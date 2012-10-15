@@ -1,0 +1,44 @@
+<% if(typeof(message) != "undefined") {%>
+<div class="alert alert-error">
+  <a class="close" data-dismiss="alert">×</a>
+  <h4 class="alert-heading"><%- message.type%></h4>
+  <%- message.message%>
+</div>
+<%}%>
+
+<ul class="breadcrumb">
+    <li>
+        <a href="<%- url_base%>/admin/home">首页</a> <span class="divider">/</span>
+    </li>    
+    <li class="active">系统工具</li>     
+</ul>
+
+<form action="<%- url_base%>/system/tools/module" method="post" class="form-horizontal" style="background-color:#fff;">
+<fieldset>
+    <legend>&nbsp;新增一个模块</legend> 
+    <div class="control-group">
+        <label class="control-label" for="name">模块名称[英文]</label>
+        <div class="controls">
+            <input value="" name="name" id="name" class="input-xlarge focused" type="text" placeholder="输入模块名称[英文]…">
+        </div>    
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="nickname">模块名称[中文]</label>
+        <div class="controls">
+            <input value="" name="nickname" id="nickname" class="input-xlarge focused" type="text" placeholder="输入模块名称[中文]…">
+        </div>    
+    </div>
+     <div class="control-group">
+        <label class="control-label" for="fields">模块字段</label>
+        <div class="controls">
+            <textarea name="fields" id="fields" class="input-xxlarge focused" rows="10" placeholder='[{name:"name",intro: "名称"},{name:"intro",intro: "说明"},...]'></textarea>
+        </div>    
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">新增</button>
+    </div>
+</fieldset>
+</form>
+
+

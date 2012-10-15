@@ -1,0 +1,45 @@
+console.time('100-elements');
+for (var i = 0; i < 100; i++) {
+  ;
+}
+console.timeEnd('100-elements');
+/*
+nbs = require('./NewBase60');
+var s = Math.pow(2,32);
+var n = Math.floor(Math.random()*s);
+var shorturl = nbs.numtosxg(n);
+
+console.log(shorturl);
+*/
+
+/*
+var shorturl = require('shorturl');
+shorturl('http://bethesignal.org/', 'https://static.ss.node%@', function(result) {
+    console.log(result);
+});
+*/
+/*
+//var mongoose = require("mongoose");
+var short = require("short");
+
+//mongoose.connect("mongodb://localhost/short");
+
+var URL = "http://nodejs.org/";
+
+short.make(URL, function(error, shortURL) {
+    if (error) {
+        console.error(error);
+    } else {
+        short.get(shortURL.hash, function(error, shortURLObject) {
+            if (error) {
+                console.error(error);
+            } else {
+                var URL = shortURLObject[0].URL
+                var hash = shortURLObject[0].hash;
+                console.log(URL, hash);
+                process.exit(1);
+            };
+        });
+    }
+});
+*/

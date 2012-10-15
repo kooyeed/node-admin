@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="demo">
+    <meta name="author" content="tony">
+    <title><%- title%></title>    
+    <style type="text/css" media="all">        
+        @import url("<%- url_rs%>/js/bootstrap/css/bootstrap.css");
+        @import url("<%- url_rs%>/js/bootstrap/css/bootstrap-responsive.css");
+        @import url("<%- url_rs%>/css/style.css");        
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="<%- url_rs%>/js/bootstrap/js/bootstrap.js"></script>
+    <script src="<%- url_rs%>/js/common.js"></script>
+</head>
+<body>        
+    <div id="hld">    
+    <div class="wrapper">       
+        <!-- wrapper begins -->
+        <% var isShow = typeof(isLoginPage) == "undefined" || isLoginPage ? true : false; %>
+        <%- partial("partials/topmenu", {isShow: isShow}) %>
+
+        <%- body%>
+
+        <%- partial("partials/footer", {isShow: isShow}) %>        
+    </div>                      
+    <!-- wrapper ends -->
+</div>      
+<!-- #hld ends -->
+
+<div class="modal" id="myModal" style="display:none;">    
+    <input type="hidden" class="params" value="" />
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3><%- web_name %></h3>
+    </div>
+    <div class="modal-body">
+        <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn cancel">取消</a>
+        <a href="#" class="btn btn-primary confirm">确定</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+<style type="text/css">
+.dialog-overlay {    
+    filter:alpha(opacity=0); 
+    -moz-opacity:0; 
+    -khtml-opacity: 0; 
+    opacity: 0; 
+    
+    position:absolute; 
+    background:#f5f5f5; 
+    top:0; left:0; 
+    z-index:5000; 
+    width:213px; 
+    height:133px;
+
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.icon-close {
+    z-index:5000;
+    position:relative;    
+    top:5px; 
+    left:190px;
+    isplay: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+}
+
+    .wrapper {
+        width:922px;
+        margin: 0px auto;
+        height:100%;
+        text-align:center;     
+    }
+
+    .tile-grid {
+        float: left;
+        margin: 0px auto;
+        width:922px;
+        /** height:525px;*/
+        overflow-x: auto;
+        border: 1px solid #ccc;  
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;      
+    }
+    .tile-grid ul,li {
+        float: left;
+        margin:0;
+        padding:0;
+        list-style-type:none;                
+    }
+
+    .tile-grid ul {
+        width:100%;
+    }
+
+    .tile-grid li {
+        width:213px; 
+        height:165px; 
+        margin-left:10px;  
+        margin-top:10px;     
+    }
+    .tile-grid li .box {
+        float: left;
+        width:213px; 
+        height:133px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 1px solid #ccc;
+
+    }
+    .tile-grid li .title {
+        float: left;
+        height:30px;
+        line-height:30px;
+        margin:0;
+        padding: 0;
+        text-align:center;
+        font-size:14px;    
+        width:213px;     
+    }
+
+    .tile-grid li .title a {
+        display:block;
+        width:213px;
+        white-space:nowrap;
+        overflow:hidden;
+        float:left;
+        -o-text-overflow: ellipsis;    /* for Opera */
+        text-overflow:ellipsis;        /* for IE */
+    }
+
+    .tile-grid li .title a:link,a:visited {
+        text-decoration:none;
+        color:#272822
+    }
+
+    .tile-grid li .title a:hover {
+        text-decoration:underline;
+        color:#000
+    }
+
+    
+
+    .upload-bar {
+        float:left;
+        height:40px;
+        line-height:40px;
+        border-bottom: 1px solid #ccc;
+        width:922px;
+        margin-top:10px;
+        text-align:right;
+        margin-bottom:5px;
+    }
+        .upload-bar input[type=file] {
+            height:40px;
+            line-height:40px;
+        }
+
+    .upload-log {
+        float:left;        
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 1px solid #ccc;
+        width:920px;
+        margin:0;
+        padding: 0;
+        margin-bottom:10px;
+    }
+        .upload-log p {
+            border-bottom:1px solid #ccc;
+            height:30px;
+            line-height:30px;  
+            margin:0;
+            padding: 0;
+        }
+            .upload-log p .filename {
+                display:block;
+                width:300px;
+                white-space:nowrap;
+                overflow:hidden;
+                float:left;
+                -o-text-overflow: ellipsis;    /* for Opera */
+                text-overflow:ellipsis;        /* for IE */
+            }
+            .upload-log p .b {
+                font-weight:bold;
+            }
+
+    /*
+    .file-queue {
+        float:left;        
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 1px solid #ccc;
+        width:922px;
+        min-height:100px;
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+
+        .upload-list .item {
+            background-color:#F0F5FF;
+            border:1px solid #CEE2F2;
+            height:50px;
+            text-align:left;
+            padding: 5px;
+            margin:5px;
+            width:900px;
+        }
+    .complete-container {
+        float:left;        
+        border: 1px solid #ccc;
+        min-height:100px;
+        width:914px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        margin-bottom:10px;
+        padding: 4px;        
+        overflow: hidden;
+        border: solid 1px #CEE2F2;
+        background-color: #F0F5FF;
+    }
+    */
+</style>
+<!--
+<div id="dialog-overlay" onmouseover="over()" onmouseout="out()">
+    <a href="#" title="close">
+        <i class="icon-close">&times;</i>
+    </a>
+</div>
+<div id="dialog-box"></div>
+-->
+
+<div class="wrapper">
+    <div class="tile-grid" style="display:none">
+        <!--
+        <ul>
+            <li>
+                <div class="box"><img src="/images/uploads/a.png" title="titletitletitletitletitletitletitle" /></div>
+                <p class="title"><a href="#" title="titletitletitletitletitletitletitle">titletitletitletitletitletitletitle</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/b.png" /></div>
+                <p class="title"><a href="#">title</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/c.png" /></div>
+                <p class="title"><a href="#">title</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/d.png" /></div>
+                <p class="title"><a href="#">title</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/e.png" /></div>
+                <p class="title"><a href="#">title</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/f.png" /></div>
+                <p class="title"><a href="#">title</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/g.png" /></div>
+                <p class="title"><a href="#">title</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="h.png" /></div>
+                <p class="title"><a href="#">title1</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/h.png" /></div>
+                <p class="title"><a href="#">title2</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/h.png" /></div>
+                <p class="title"><a href="#">title3</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/h.png" /></div>
+                <p class="title"><a href="#">title3</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/h.png" /></div>
+                <p class="title"><a href="#">title3</a></p>
+            </li>
+            <li>
+                <div class="box"><img src="/images/uploads/h.png" /></div>
+                <p class="title"><a href="#">title3</a></p>
+            </li>            
+        </ul>
+        -->
+    </div>
+
+    <div class="clear"></div>
+    <div class="upload-bar">
+        <button type="button" class="btn left"  id="btnSetTravel">view</button>
+        <button type="button" class="btn" id="btnUpload">upload</button>
+    </div>
+
+    <div class="upload-log row">
+        <p>
+            <span class="span1 columns b">No</span>
+            <span class="span4 columns filename b">FileName</span>
+            <span class="span1 columns b">Size(m)</span>            
+            <span class="span1 columns b">m/s</span>
+            <span class="span1 columns b">%</span>
+            <span class="span1 columns b">Oper</span>
+        </p>
+        <p class="no-data">no file uploaded.</p>
+        <!--
+        <p>
+            <span class="span1 columns">#001</span>
+            <span class="span4 columns filename">nicolasffbb811.zip</span>
+            <span class="span1 columns">1.3M</span>            
+            <span class="span1 columns">400.33</span>
+            <span class="span1 columns">03.11%</span>
+            <span class="span1 columns">&times;</span>
+        </p>
+        <p>
+            <span class="span1 columns">#002</span>
+            <span class="span4 columns filename">nicolasff-.zip</span>
+            <span class="span1 columns">1.3M</span>            
+            <span class="span1 columns">400.33</span>
+            <span class="span1 columns">03.11%</span>
+            <span class="span1 columns">&times;</span>
+        </p>
+        <p>
+            <span class="span1 columns">#002</span>
+            <span class="span4 columns filename">nicolasff-.zip</span>
+            <span class="span1 columns">1.3M</span>            
+            <span class="span1 columns">400.33</span>
+            <span class="span1 columns">03.11%</span>
+            <span class="span1 columns">&times;</span>
+        </p>
+        -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    var TonyUploader = function() {
+        var self = this;
+
+        this.thumbC = $(".tile-grid");
+        this.logC = $(".upload-log");
+
+        this.counter = 0;
+
+        this.addThumb = function(options) {
+            this.thumbC.show();
+
+            if(this.thumbC.has("ul").length == 0) {
+                this.thumbC.html("<ul></ul>");
+            }
+
+            
+            //add one thumbnail
+            var html = '<li class="li' + options.id + '"><div class="box"><img src="/images/uploads/' + options.url + '" /></div><p class="title"><a href="#">' + options.title + '</a></p></li>';                        
+            this.thumbC.children().append(html);
+
+            //add one overlay over thumbnail
+            var nail = $(".li" + options.id);            
+            var layhtml = '<div class="dialog-overlay lay-'+ options.id + '" onmouseover="over(event)" onmouseout="out(event)"><a href="#" title="close"><i class="icon-close">&times;</i></a></div>';
+            $("body").append(layhtml);
+
+            var lay = $(".lay-" + options.id);
+            lay.css("left", nail.position().left + 10);
+            lay.css("top", nail.position().top + 10);
+        };
+
+        this.createLog = function(options) {                        
+            if(this.logC.has("p.no-data").length == 1) {
+                this.logC.children("p.no-data").remove();
+            }
+
+            this.counter++;
+
+            options.persize = 0;
+            options.size = (options.size/1024/1024).toFixed(3);
+
+            var html = '<p class="p-' + options.id + '">';
+            html += '<span class="span1 columns">#' + this.counter + '</span>';
+            html += '<span class="span4 columns filename">' + options.filename + '</span>';
+            html += '<span class="span1 columns">' + options.size + '</span>    ';        
+            html += '<span class="span1 columns persize">' + options.persize + '</span>';
+            html += '<span class="span1 columns percent">' + options.percent + '%</span>';
+            html += '<span class="span1 columns"><a href="#">&times;</a></span>';
+            html += '<input type="hidden" class="begtime" value="'+ (+new Date) + '" />';
+            html += '</p>';
+            this.logC.append(html);
+        };
+
+        this.modifyLog = function(options) {
+            //console.log(options);
+            var pid = ".p-" + options.id;            
+            var p = this.logC.children(pid);
+            var timespan = ((+new Date) - (+p.children(".begtime").val()))/1000;
+            //console.log("timespan:",timespan);
+
+            options.persize = (options.size * options.percent)/timespan/1024/1024;
+            options.persize = options.persize.toFixed(2);
+            p.children(".persize").html(options.persize);
+            p.children(".percent").html((options.percent*100).toFixed(2) + "%");            
+            console.log("percent:", p.children(".percent").html() );
+        }
+    };
+</script>
+
+
+<script type="text/javascript" src="/js/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="/js/swfupload/swfupload.swfobject.js"></script>
+<script type="text/javascript" src="/js/swfupload/swfupload.queue.js"></script>
+<!--
+<script type="text/javascript" src="/js/swfupload/fileprogress.js"></script>
+<script type="text/javascript" src="/js/swfupload/handlers.js"></script>
+-->
+<script type="text/javascript">
+    var uploader = new TonyUploader();
+
+    var swfu;
+    SWFUpload.onload = function () {
+        var settings = {
+            flash_url : "/js/swfupload/swfupload.swf",
+            //upload_url: "http://127.0.0.1:8888/upload",
+            upload_url: "/upload",
+            post_params: {
+                "extparams" : "test",
+            },
+            file_post_name:  "filedata",
+            file_size_limit : 0,
+            file_types : "*.*",
+            file_types_description : "All Files",
+            file_upload_limit : 0,
+            file_queue_limit : 0,
+            custom_settings : {
+                progressTarget : "fsUploadProgress",
+                cancelButtonId : "btnCancel"
+            },
+            debug: false,
+
+            // Button Settings
+            button_image_url : "/js/swfupload/XPButtonUploadText_61x22.png",            
+            button_placeholder_id : "btnUpload",
+            button_width: 61,
+            button_height: 22,
+
+            // The event handler functions are defined in handlers.js
+            swfupload_loaded_handler : function() {
+            },
+            file_queued_handler : function(file) {
+                uploader.createLog({
+                    filename: file.name,
+                    size: file.size,
+                    id: file.id,
+                    percent: 0
+                });
+            },
+            file_queue_error_handler : function(file, errorCode, message) {
+                console.log(file, errorCode, message);
+            },
+            file_dialog_complete_handler : function(numFilesSelected, numFilesQueued) {
+                this.startUpload();
+            },
+            upload_start_handler : function(file) {
+
+            },
+            upload_progress_handler : function(file, bytesLoaded, bytesTotal) {                
+                uploader.modifyLog({                    
+                    id: file.id,
+                    size: bytesTotal,
+                    percent: (bytesLoaded/bytesTotal)
+                });
+            },
+            upload_error_handler : function(file, errorCode, message) {
+                try {
+                    switch (errorCode) {
+                    case SWFUpload.UPLOAD_ERROR.HTTP_ERROR:
+                        console.log("Upload Error: " + message);                        
+                        break;
+                    case SWFUpload.UPLOAD_ERROR.UPLOAD_FAILED:
+                        console.log("Upload Failed.");                        
+                        break;
+                    case SWFUpload.UPLOAD_ERROR.IO_ERROR:
+                        console.log("Server (IO) Error");                        
+                        break;
+                    case SWFUpload.UPLOAD_ERROR.SECURITY_ERROR:
+                        console.log("Security Error");                        
+                        break;
+                    case SWFUpload.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:
+                        console.log("Upload limit exceeded.");                        
+                        break;
+                    case SWFUpload.UPLOAD_ERROR.FILE_VALIDATION_FAILED:
+                        console.log("Failed Validation.  Upload skipped.");                        
+                        break;
+                    case SWFUpload.UPLOAD_ERROR.FILE_CANCELLED:                        
+                        console.log("Cancelled");
+                        break;
+                    case SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED:
+                        console.log("Stopped");
+                        break;
+                    default:
+                        console.log("Unhandled Error: " + errorCode);                        
+                        break;
+                    }
+                } catch (ex) {
+                    console.log(ex);
+                }
+            },
+            upload_success_handler : function(file, serverData) {
+                if(serverData) {
+                    uploader.addThumb({
+                        id: file.id,
+                        url: serverData,
+                        title: file.name
+                    });
+                }
+            },
+            upload_complete_handler : function(file) {
+
+            },
+            queue_complete_handler : function(numFilesUploaded) {
+            }, // Queue plugin event
+            
+            // SWFObject settings
+            minimum_flash_version : "9.0.28",
+            swfupload_pre_load_handler : function() { 
+            },
+            swfupload_load_failed_handler : function() { 
+            }
+        };
+
+        swfu = new SWFUpload(settings);
+    };
+
+    function over(event) {
+        overlayOpacity = 0.5;
+        $(event.target).css({
+            'opacity': overlayOpacity,
+            '-moz-opacity': overlayOpacity,
+            '-khtml-opacity': overlayOpacity,
+            '-webkit-opacity:' : overlayOpacity
+        });
+    }
+
+    function out(event) {
+        overlayOpacity = 0;
+
+        $(event.target).css({
+            'opacity': overlayOpacity,
+            '-moz-opacity': overlayOpacity,
+            '-khtml-opacity': overlayOpacity,
+            '-webkit-opacity:' : overlayOpacity
+        });
+    }
+</script>

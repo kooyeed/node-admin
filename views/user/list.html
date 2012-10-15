@@ -1,0 +1,74 @@
+<ul class="breadcrumb">
+    <li>
+        <a href="<%- url_base%>/user/home">首页</a> <span class="divider">/</span>
+    </li>    
+    <li class="active">普通用户管理</li>     
+</ul>
+
+<div class="well mbottom0 list-toobar">
+    <form class="form-search mbottom0 mtop0 left" method="get" action="<%- url_base%>/user/list">
+          <input type="text" name="keyword" class="input-xlarge search-query" value="<%-keyword%>">
+          <button type="submit" class="btn">搜索</button>
+    </form>
+
+    <ul class="nav nav-pills right">
+        <li><a href="<%- url_base%>/user/create">新增普通用户</a></li>        
+    </ul>
+
+</div> 
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th><input type="checkbox" class="cids" /></th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>昵称</th>
+            <th>邮件</th>
+            <th>性别</th>                          
+            <th>生日</th>
+            <th>创建时间</th>
+            <th>更新时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>    
+        <% items.forEach(function(item, index) {%>
+        <tr>
+            <td><input type="checkbox" name="cid" value="<%- item._id%>" /></td>
+            <td><a href="<%- url_base%>/user/modify/<%- item._id%>" title="编辑"><%- item.username%></a></td>
+            <td><%- item.password%></td>
+            <td><%- item.nickname%></td>
+            <td><%- item.email%></td>
+            <td><%- item.sex%></td>
+            <td><%- item.birthday%></td>
+            <td><%- item.createAt%></td>
+            <td><%- item.updateAt%></td>
+            <td>
+                <a href="<%- url_base%>/user/modify/<%- item._id%>" title="编辑"><i class="icon-pencil"></i></a>
+                
+                <a href="<%- url_base%>/user/remove/<%- item._id%>" class="adelete" title="删除"><i class="icon-remove"></i></a>
+            </td>
+        </tr>
+        <% }); %>
+
+        <% if(items.length == 0){ %>
+        <tr><td colspan="9" class="list-no-data">暂无任何相关数据记录...</td></tr>
+        <% } %>
+    </tbody>
+</table>
+
+<% if(items.length > 0){ %>
+<div class="btn-group left mtop0">
+    <button class="btn btn-small">更多操作</button>
+    <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li><a href="<%- url_base%>/user/bremove/" class="batch-delete">批量删除</a></li>        
+    </ul>
+</div>
+
+<div class="pagination right mtop0">
+    <%- partial("partials/pagination", {page: page, total: total, url: url_base + '/user/list?keyword=' + keyword }) %>     
+</div>
+<% } %>

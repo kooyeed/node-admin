@@ -1,0 +1,20 @@
+node-admin
+==========
+:Author:    Tony Liu
+:Email:     <<liuning@dotlife.cn>>
+:Date:      2012-10-15 09:37:39
+:Revision:  0.1
+
+a management system for NodeJS
+
+== Introduce
+
+blabla...
+
+== Installation
+
+blabla...
+
+== FAQs
+
+blabla...

@@ -1,0 +1,29 @@
+<ul class="breadcrumb">
+    <li>
+        <a href="<%- url_base%>/admin/home">首页</a> <span class="divider">/</span>
+    </li>    
+    <li class="active">系统日志</li>     
+</ul>
+
+<div class="well mbottom0 list-toobar">
+    <form class="form-search mbottom0 mtop0 left" method="get" action="">
+          <input type="text" name="level" class="input-xlarge search-query" value="">
+          <button type="submit" class="btn">搜索</button>
+    </form>
+
+    <ul class="nav nav-pills right">
+        <li><a href="<%- url_base%>/system/logs/">全部</a></li>
+        <li><a href="<%- url_base%>/system/logs/?level=debug">调试</a></li>
+        <li><a href="<%- url_base%>/system/logs/?level=warn">警告</a></li>
+        <li><a href="<%- url_base%>/system/logs/?level=info">消息</a></li>
+        <li><a href="<%- url_base%>/system/logs/?level=error">错误</a></li>
+        <li><a href="<%- url_base%>/system/logs/?level=fatal">致命</a></li>
+        <li><a href="<%- url_base%>/system/userlog">用户日志</a></li>        
+    </ul>
+</div> 
+
+<div class="clear"></div>
+
+<div class="well">
+    <pre><%- c %></pre>
+</div>

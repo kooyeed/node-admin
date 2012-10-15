@@ -1,0 +1,133 @@
+<div class="alert alert-block">
+  <a class="close" data-dismiss="alert">×</a>
+  <h4 class="alert-heading">重要提示!</h4>
+  系统出现严重的异常错误，请查阅系统日志处理.
+</div>
+
+<ul class="breadcrumb">
+    <li>
+        <i class="icon-home"></i>
+        <a href="<%- url_base%>/admin/home">首页</a> 
+        <span class="divider">/</span>
+    </li>
+    <li class="active">控制面板</li>
+</ul>
+<div class="func-show">
+    <ul class="thumbnails">
+        
+        <% homemenu.forEach(function(item,index) { %>
+        <li class="span2">
+            <a href="<%- item.url %>" class="thumbnail">
+            <img src="<%- url_rs%>/<%- item.icon %>?<%- item.size %>" title="<%- item.intro %>">
+            </a>
+        </li>
+        <% })  %>   
+    </ul>
+</div>
+
+<div class="info-show">
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <div class="left">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">数据统计</a>                        
+                </div>
+                <div class="right" style="height:36px;line-height:36px;margin-right:10px;">
+                    <a href="#" class="restat" title="刷新"><i class="icon-refresh"></i></a>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>项目</th>
+                                <th>统计</th>
+                                <th>描述</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>    
+                            <% stats.forEach(function(stat,index) { %>
+                            <tr>                                
+                                <td><%- stat.col %></td>
+                                <td><%- stat.count %></td>                                
+                                <td><%- stat.intro %></td>
+                            </tr>
+                            <% })  %>
+                        </tbody>
+                    </table>
+                    <!-- data stat end -->
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading">                
+                <div class="left">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">操作日志</a>
+                </div>
+                <div class="right" style="height:36px;line-height:36px;margin-right:10px;">
+                    <a href="<%- url_base%>/system/userlog" title="更多"><i class="icon-list-alt"></i></a>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div id="collapseTwo" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>操作者</th>
+                                <th>操作</th>
+                                <th>路径/终端</th>                                
+                                <th>日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>  
+                            <% logs.forEach(function(log,index) { %>
+                            <tr>                                
+                                <td><%- log.username %></td>
+                                <td><%- log.action.substr(0,6) %></td>
+                                <td><%- log.path %>/<%- log.ip %></td>
+                                <td><%- log.createAt %></td>
+                            </tr>
+                            <% })  %>
+                        </tbody>
+                    </table>
+                    <!-- data stat end -->
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <div class="left">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">使用说明</a>
+                </div>
+                <div class="right" style="height:36px;line-height:36px;margin-right:10px;">
+                    <a href="<%- url_base%>/system/downreadme" title="下载"><i class="icon-download-alt"></i></a>
+                </div>
+                
+            </div>
+            <div class="clear"></div>
+            <div id="collapseThree" class="accordion-body collapse">
+                <div class="accordion-inner well">
+                    <ul>
+                        <%- readme %>
+                    <ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $('.restat').click(function(event) {
+            var url = "<%- url_base%>/system/statall";
+            $.get(url, function(res) {
+                window.location.reload();
+            });
+        });
+    });
+</script>

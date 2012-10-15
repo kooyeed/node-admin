@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<title>jQuery UI Dial - demo page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="../vendor/jquery-ui/jquery-1.7.2.js"></script>
+		<script src="../vendor/jquery-ui/ui/jquery.ui.core.js"></script>
+		<script src="../vendor/jquery-ui/ui/jquery.ui.widget.js"></script>
+		<script src="../vendor/jquery-ui/ui/jquery.ui.mouse.js"></script>
+		<script src="../vendor/jquery-ui/ui/jquery.ui.draggable.js"></script>
+		<script src="../jquery.ui.dial.js"></script>
+		<script src="demo.js"></script>
+		<style>
+			body, html {
+				height: 100%;
+				background: #888;
+			}
+			.ui-dial {
+				display: inline-block;
+				background: url('knob.png') no-repeat top left;
+				width: 36px;
+				height: 36px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>jQuery UI Dial</h1>
+		<p id="dial"></p>
+	</body>
+</html>

@@ -1,0 +1,95 @@
+<% if(typeof(message) != "undefined") {%>
+<div class="alert alert-error">
+  <a class="close" data-dismiss="alert">×</a>
+  <h4 class="alert-heading"><%- message.type%></h4>
+  <%- message.message%>
+</div>
+<%}%>
+<ul class="breadcrumb">
+    <li>
+        <a href="<%- url_base%>/user/home">首页</a> <span class="divider">/</span>
+    </li>  
+    <li>
+        <a href="<%- url_base%>/user/list">普通用户管理</a> <span class="divider">/</span>
+    </li>    
+    <li class="active">新增普通用户</li>     
+</ul>
+
+<form action="<%- url_base%>/user/<%- action%>" method="post" class="form-horizontal" style="background-color:#fff;">
+<fieldset>
+    <legend>&nbsp;新增普通用户</legend> 
+    <div class="control-group">
+        <label class="control-label" for="username">用户名</label>
+        <div class="controls">
+            <input value="<%- item.username%>" name="username" id="username" class="input-xlarge focused" type="text" placeholder="输入用户名…">
+        </div>    
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="password">密码</label>
+        <div class="controls">
+            <input value="<%- item.password%>" name="password" id="password" class="input-xlarge focused" type="text" placeholder="输入普通用户密码…">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="nickname">昵称</label>
+        <div class="controls">
+            <input value="<%- item.nickname%>" name="nickname" id="nickname" class="input-xlarge focused" type="text" placeholder="输入昵称…">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="email">邮件</label>
+        <div class="controls">
+            <input value="<%- item.email%>" name="email" id="email" class="input-xlarge focused" type="text" placeholder="输入邮件…">
+        </div>
+    </div> 
+    <div class="control-group">
+        <label class="control-label" for="nickname">性别</label>
+        <div class="controls">
+            <div class="btn-group" data-toggle="buttons-radio">
+                <button type="button" val="M" class="btn btn-primary <% if(item.sex=="M"){%>active<%}%>">男性</button>
+                <button type="button" val="U" class="btn btn-primary <% if(item.sex!="M" && item.sex!="F"){%>active<%}%>">保密</button>
+                <button type="button" val="F" class="btn btn-primary <% if(item.sex=="F"){%>active<%}%>">女性</button>
+                <input type="hidden" id="sex" name="sex" value="<%- item.sex%>" />
+            </div>
+        </div>
+    </div> 
+    <div class="control-group">
+        <label class="control-label" for="birthday">生日</label>
+        <div class="controls">
+            <input value="<%- item.birthday%>" name="birthday" id="birthday" class="input-xlarge focused" type="text" placeholder="输入生日…">
+        </div>
+    </div>  
+
+    <% if(action == "modify") { %>
+    <div class="control-group">
+        <label class="control-label" for="createAt">创建日期</label>
+        <div class="controls">
+            <input value="<%- item.createAt%>" id="createAt" class="input-xlarge  disabled" type="text"  disabled>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="updateAt">更新日期</label>
+        <div class="controls">
+            <input value="<%- item.updateAt%>" id="updateAt" class="input-xlarge  disabled" type="text"  disabled>
+        </div>
+    </div>
+    <% } %>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">保存</button>
+        <button class="btn btnCancel" type="button">取消</button>
+    </div>
+</fieldset>
+
+<input type="hidden" name="_id" value="<%- item._id%>" />
+</form>
+<script type="text/javascript">
+    $(function() {
+        $(".btn-group button").click(function(event){
+            $("#sex").val($(event.target).attr('val'));
+        });
+    });  
+</script>
+
