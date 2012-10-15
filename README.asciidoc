@@ -5,7 +5,7 @@ node-admin
 :Date:      2012-10-15 09:37:39
 :Revision:  0.1
 
-TIP: a management system for NodeJS
+a management system for NodeJS
 
 == Introduction
 
