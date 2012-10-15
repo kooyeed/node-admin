@@ -5,16 +5,21 @@ node-admin
 :Date:      2012-10-15 09:37:39
 :Revision:  0.1
 
-a management system for NodeJS
+TIP: a management system for NodeJS
 
-== Introduce
+== Introduction
 
-blabla...
+//TODO: add some text here...
 
 == Installation
 
-blabla...
+//TODO: add some text here...
+
+== Release Notes
+
+See HISTORY
 
 == FAQs
 
-blabla...
+//TODO: add some text here...
+
