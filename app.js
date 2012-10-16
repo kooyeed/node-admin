@@ -8,7 +8,7 @@ var express = require('express')
     , config = require('./config')
     , ejs = require('ejs')
     , log4js = require('log4js')
-    , app = module.exports = express.createServer();
+    , app = module.exports = express.createServer();    
 
 //set view engine
 app.set('views', __dirname + '/views');
@@ -97,7 +97,7 @@ utils = require('./libs/utils');
 //init logger
 utils.logfile = __dirname + '/data/logs/mama.log';
 //log4js.addAppender(log4js.consoleAppender());
-log4js.addAppender(log4js.fileAppender(utils.logfile), 'mama');
+//log4js.addAppender(log4js.fileAppender(utils.logfile), 'mama');
 logger = log4js.getLogger("mama");
 logger.setLevel('DEBUG');
 
