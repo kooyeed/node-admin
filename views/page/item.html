@@ -1,0 +1,62 @@
+<% if(typeof(message) != "undefined") {%>
+<div class="alert alert-error">
+  <a class="close" data-dismiss="alert">×</a>
+  <h4 class="alert-heading"><%- message.type%></h4>
+  <%- message.message%>
+</div>
+<%}%>
+<ul class="breadcrumb">
+    <li>
+        <a href="<%- url_base%>/admin/home">首页</a> <span class="divider">/</span>
+    </li>  
+    <li>
+        <a href="<%- url_base%>/page/list">页面管理</a> <span class="divider">/</span>
+    </li>    
+    <li class="active">新增页面</li>     
+</ul>
+
+<form action="<%- url_base%>/page/<%- action%>" method="post" class="form-horizontal" style="background-color:#fff;">
+<fieldset>
+    <legend>&nbsp;新增页面</legend> 
+    <!--
+    <div class="control-group">
+        <label class="control-label" for="username">用户名</label>
+        <div class="controls">
+            <input value="<%- item%>" name="username" id="username" class="input-xlarge focused" type="text" placeholder="输入用户名…">
+        </div>    
+    </div>   
+    -->
+    
+	<div class="control-group">
+		<label class="control-label" for="title">标题</label><div class="controls"><input value="<%- item.title%>" name="title" id="title" class="input-xlarge focused" type="text" placeholder="输入标题…"></div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="url">固定地址</label><div class="controls"><input value="<%- item.url%>" name="url" id="url" class="input-xlarge focused" type="text" placeholder="输入固定地址…"></div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="content">内容</label><div class="controls"><input value="<%- item.content%>" name="content" id="content" class="input-xlarge focused" type="text" placeholder="输入内容…"></div>
+	</div>
+
+    <% if(action == "modify") { %>
+    <div class="control-group">
+        <label class="control-label" for="createAt">创建日期</label>
+        <div class="controls">
+            <input value="<%- item.createAt%>" id="createAt" class="input-xlarge  disabled" type="text"  disabled>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="updateAt">更新日期</label>
+        <div class="controls">
+            <input value="<%- item.updateAt%>" id="updateAt" class="input-xlarge  disabled" type="text"  disabled>
+        </div>
+    </div>
+    <% } %>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">保存</button>
+        <button class="btn btnCancel" type="button">取消</button>
+    </div>
+</fieldset>
+
+<input type="hidden" name="_id" value="<%- item._id%>" />
+</form>

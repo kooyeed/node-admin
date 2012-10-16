@@ -87,7 +87,7 @@ module.exports = function(app) {
                         var modelItem = "%s:        { type: String, required: true}";
                         var modelFields = "";
 
-                        var itemItem = '\t<div class="control-group">\n\t\t<label class="control-label" for="%s">%s</label><div class="controls"><input value="" name="%s" id="%s" class="input-xlarge focused" type="text" placeholder="输入%s…"></div>\n\t</div>';
+                        var itemItem = '\t<div class="control-group">\n\t\t<label class="control-label" for="%s">%s</label><div class="controls"><input value="<\%- item.%s\%>" name="%s" id="%s" class="input-xlarge focused" type="text" placeholder="输入%s…"></div>\n\t</div>';
                         var itemFields = "";
 
                         var listHeader = "\t\t\t<th>%s</th>\n";
@@ -143,8 +143,8 @@ module.exports = function(app) {
                         var group = this.group();
                         var modelT = util.format("%s/../models/%s.js", __dirname, name);
                         var routeT = util.format("%s/../routes/%s.js", __dirname, name);
-                        var itemT = util.format("%s/../views/%s/item.js", __dirname, name);
-                        var listT = util.format("%s/../views/%s/list.js", __dirname, name);
+                        var itemT = util.format("%s/../views/%s/item.html", __dirname, name);
+                        var listT = util.format("%s/../views/%s/list.html", __dirname, name);
 
                         var group = this.group();
                         fs.writeFile(modelT, modelTpl, group());

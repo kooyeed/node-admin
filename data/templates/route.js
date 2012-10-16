@@ -3,20 +3,20 @@ var #uname#Model = require("../models/#name#")
     , step = require("step");
 
 module.exports = function(app) {
-    app.get("/#uname#/create", validateUser, function(req, res) {            
+    app.get("/#name#/create", validateUser, function(req, res) {            
         res.render("#name#/item", {
             item: new #uname#Model(),
             action: "create"
         });
     });
-    app.post("/#uname#/create", validateUser, function(req, res) {        
-        var model = new #uname#Model();        
+    app.post("/#name#/create", validateUser, function(req, res) {        
+        var doc = new #uname#Model();        
         #fields#       
         
-        model.validate(function(err) {     
+        doc.validate(function(err) {     
             if(err) {
                 return res.render("#name#/item", {
-                    item: model,
+                    item: doc,
                     action: "create",
                     message: {
                         type: "Error",
@@ -24,14 +24,14 @@ module.exports = function(app) {
                     }
                 });
             }                   
-            model.save(function(err, doc) {
+            doc.save(function(err, doc1) {
                 if(err) throw err;
                 res.redirect("/#name#/list");    
             });                    
         }); //end validate
     });
 
-    app.get("/#uname#/modify/:id", validateUser, function(req, res) {
+    app.get("/#name#/modify/:id", validateUser, function(req, res) {
         #uname#Model.findById(req.params.id, function(err, doc) {
             if(err) throw err;
             res.render("#name#/item", {
@@ -41,15 +41,15 @@ module.exports = function(app) {
         });
     });
 
-    app.post("/#uname#/modify", validateUser, function(req, res) {
-        #uname#Model.findById(req.body._id, function(err, doc) {
+    app.post("/#name#/modify", validateUser, function(req, res) {
+        #uname#Model.findById(req.body._id, function(err, model) {
             if(err) throw err;
 
             #fields#
-            doc.validate(function(err) {
+            model.validate(function(err) {
                 if(err) {
                     res.render("#name#/item", {
-                        item: doc,
+                        item: model,
                         action: "modify",
                         message: {
                             type: "Error",
@@ -59,7 +59,7 @@ module.exports = function(app) {
                     return false;
                 }
                 
-                doc.save(function(err, doc) {
+                model.save(function(err, doc) {
                     if(err) throw err;                    
                     res.redirect("/#name#/list");
                 });    
@@ -67,7 +67,7 @@ module.exports = function(app) {
         });
     });
 
-    app.get("/#uname#/remove/:id", validateUser, function(req, res) {
+    app.get("/#name#/remove/:id", validateUser, function(req, res) {
         var cond = {
             _id: req.params.id
         };
@@ -77,7 +77,7 @@ module.exports = function(app) {
         });
     });
 
-    app.get("/#uname#/bremove/:ids", validateUser, function(req, res) {
+    app.get("/#name#/bremove/:ids", validateUser, function(req, res) {
         var ids = req.params.ids.split(",");
         var ors = [];
         ids.forEach(function(id,index) {
@@ -92,7 +92,7 @@ module.exports = function(app) {
         });
     }); 
 
-    app.get("/#uname#/list", function(req, res) {
+    app.get("/#name#/list", function(req, res) {
         var cond = null;
         var keyword = "";
         if(typeof(req.query.keyword) != "undefined" && req.query.keyword) {
