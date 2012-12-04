@@ -1,25 +1,12 @@
-node-admin
-==========
-:Author:    Tony Liu
-:Email:     <<liuning@dotlife.cn>>
-:Date:      2012-10-15 09:37:39
-:Revision:  0.1
+.Quick Start
+[source,perl]
+----
+# *Source* block
+# Use: highlight code listings
+# (require `source-highlight` or `pygmentize`)
+use DBI;
+my $dbh = DBI->connect('...',$u,$p)
+    or die "connect: $dbh->errstr";
+----
 
-a management system for NodeJS
-
-== Introduction
-
-//TODO: add some text here...
-
-== Installation
-
-//TODO: add some text here...
-
-== Release Notes
-
-See HISTORY
-
-== FAQs
-
-//TODO: add some text here...
 
